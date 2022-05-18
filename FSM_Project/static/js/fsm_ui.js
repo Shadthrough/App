@@ -292,15 +292,41 @@ var fsm = (function() {
 	return {
 
 		tmpTest : function () {
-			require('child_process').exec('ls',
-			function (err, stdout, stderr) {
-				console.log( stdout);   
-
-				if (err) {
-					console.log('Error ' + err);
-				}
+			var serializedModel = delegate.serialize();
+			// var grammar = new File('fsm.g');
+			var line = 'grammar fsm;\noptions = {;}\n';
+			var checked = [];
+			var trans = serializedModel.dfa.transitions;
+			console.log(trans);
+			Object.keys(trans).forEach(key => {
+				line = line + `${key} : `;
+				var paths = Object.keys(trans[key])
+				paths.forEach(path => {
+					if (checked.includes(trans[key][path])){
+						console.log('');
+					}
+					else{
+						line = line + `'#' ${trans[key][path]}\n| `;
+						checked.push(trans[key][path]);
+						console.log(checked);
+					}
+					if (paths[paths.length-1] != path){
+						line = line + `'${path}' ${trans[key][path]}\n| `;
+					}
+					else{
+						line = line + `'${path}' ${trans[key][path]}`;
+					}
+				});
+				checked = [];
+				line = line + `\n;\n`;
 			});
-			alert('f u');
+			console.log(line);
+			let form = document.createElement('form');
+			form.action = 'createGrammar';
+			form.method = 'POST';
+			form.innerHTML = `<input name="grammar" value="${line}">`;
+			form.submit();
+			// alert('f u');
 		},
 
 		init: function() {
