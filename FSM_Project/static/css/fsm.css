@@ -106,6 +106,17 @@ h5 {
   min-width: 500px;
 }
 
+#aliasArea {
+  min-height: 330px;
+  padding: 5px;
+  background-color: rgb(170, 170, 170);
+  border-radius: 5px;
+  right: 0;
+  position: absolute;
+  z-index: 1;
+  display: hidden;
+}
+
 #machineGraph {
   min-height: 330px;
   border: 1px solid rgb(105, 105, 105);
@@ -171,7 +182,7 @@ h5 {
     }
     div.state img.delete {
       position: relative;
-      top: -18px;
+      top: -35px;
       cursor: pointer;
     }
 

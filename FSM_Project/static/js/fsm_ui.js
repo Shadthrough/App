@@ -294,7 +294,7 @@ var fsm = (function() {
 		tmpTest : function () {
 			var serializedModel = delegate.serialize();
 			// var grammar = new File('fsm.g');
-			var line = 'grammar fsm;\noptions = {;}\n';
+			var line = 'grammar fsm;\noptions {language=Python\;backtrack=true\;}\n';
 			var checked = [];
 			var trans = serializedModel.dfa.transitions;
 			console.log(trans);
@@ -318,14 +318,11 @@ var fsm = (function() {
 					}
 				});
 				checked = [];
-				line = line + `\n;\n`;
+				line = line + `\n\;\n`;
 			});
+			var data = new Object(line);
 			console.log(line);
-			let form = document.createElement('form');
-			form.action = 'createGrammar';
-			form.method = 'POST';
-			form.innerHTML = `<input name="grammar" value="${line}">`;
-			form.submit();
+			$.post("antlr", data=data);
 			// alert('f u');
 		},
 
