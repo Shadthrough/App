@@ -44,6 +44,7 @@ var fsm = (function() {
 			open: function() {
 				// Focus on either the machineName entry box or the textarea depending on what panel is active
 				saveLoadDialog.find("div.ui-tabs-panel:not(.ui-tabs-hide)").find('input, textarea').focus();
+
 			}
 		});
 
@@ -288,16 +289,18 @@ var fsm = (function() {
 		});
 		return state;
 	};
-
+	
 	return {
 
 		tmpTest : function () {
 			var serializedModel = delegate.serialize();
 			// var grammar = new File('fsm.g');
-			var line = 'grammar fsm;\noptions {language=Python\;backtrack=true\;}\n';
+			var line = 'grammar fsm;\noptions {language=Python3\;}\n'; //backtrack=true\;
 			var checked = [];
+			console.log(serializedModel)
 			var trans = serializedModel.dfa.transitions;
 			console.log(trans);
+			line = line + `expr: start;\n`
 			Object.keys(trans).forEach(key => {
 				line = line + `${key} : `;
 				var paths = Object.keys(trans[key])
@@ -307,8 +310,12 @@ var fsm = (function() {
 					}
 					else{
 						line = line + `'#' ${trans[key][path]}\n| `;
+						line = line + `'#' ${key}\n| `;
 						checked.push(trans[key][path]);
 						console.log(checked);
+					}
+					if (serializedModel.dfa.acceptStates.includes(key)) {
+						line = line + `EOF\n| `;
 					}
 					if (paths[paths.length-1] != path){
 						line = line + `'${path}' ${trans[key][path]}\n| `;
@@ -320,9 +327,15 @@ var fsm = (function() {
 				checked = [];
 				line = line + `\n\;\n`;
 			});
-			var data = new Object(line);
-			console.log(line);
-			$.post("antlr", data=data);
+			var data = {
+				'grammar' : line,
+				'input' : $('#testString').val()
+			};
+			console.log(data);
+			$.post("antlr", data=data, function (res) {
+				var accepts = res === 'Accepted' ? true : false;
+				$('#testResult').html(accepts ? 'Accepted' : 'Rejected').effect('highlight', {color: accepts ? '#bfb' : '#fbb'}, 1000);
+			});
 			// alert('f u');
 		},
 

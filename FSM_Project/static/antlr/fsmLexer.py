@@ -1,230 +1,53 @@
-# $ANTLR 3.3 Nov 30, 2010 12:50:56 fsm__.g 2022-05-20 13:49:20
-
+# Generated from .\static\antlr\fsm.g4 by ANTLR 4.10.1
+from antlr4 import *
+from io import StringIO
 import sys
-from antlr3 import *
-from antlr3.compat import set, frozenset
+if sys.version_info[1] > 5:
+    from typing import TextIO
+else:
+    from typing.io import TextIO
 
 
-# for convenience in actions
-HIDDEN = BaseRecognizer.HIDDEN
-
-# token types
-EOF=-1
-T__4=4
-T__5=5
-T__6=6
-T__7=7
-T__8=8
-
+def serializedATN():
+    return [
+        4,0,4,17,6,-1,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,1,0,1,0,1,1,1,1,1,
+        2,1,2,1,3,1,3,0,0,4,1,1,3,2,5,3,7,4,1,0,0,16,0,1,1,0,0,0,0,3,1,0,
+        0,0,0,5,1,0,0,0,0,7,1,0,0,0,1,9,1,0,0,0,3,11,1,0,0,0,5,13,1,0,0,
+        0,7,15,1,0,0,0,9,10,5,35,0,0,10,2,1,0,0,0,11,12,5,65,0,0,12,4,1,
+        0,0,0,13,14,5,120,0,0,14,6,1,0,0,0,15,16,5,66,0,0,16,8,1,0,0,0,1,
+        0,0
+    ]
 
 class fsmLexer(Lexer):
 
-    grammarFileName = "fsm__.g"
-    antlr_version = version_str_to_tuple("3.3 Nov 30, 2010 12:50:56")
-    antlr_version_str = "3.3 Nov 30, 2010 12:50:56"
+    atn = ATNDeserializer().deserialize(serializedATN())
 
-    def __init__(self, input=None, state=None):
-        if state is None:
-            state = RecognizerSharedState()
-        super(fsmLexer, self).__init__(input, state)
+    decisionsToDFA = [ DFA(ds, i) for i, ds in enumerate(atn.decisionToState) ]
 
+    T__0 = 1
+    T__1 = 2
+    T__2 = 3
+    T__3 = 4
 
+    channelNames = [ u"DEFAULT_TOKEN_CHANNEL", u"HIDDEN" ]
 
+    modeNames = [ "DEFAULT_MODE" ]
 
+    literalNames = [ "<INVALID>",
+            "'#'", "'A'", "'x'", "'B'" ]
 
+    symbolicNames = [ "<INVALID>",
+ ]
 
+    ruleNames = [ "T__0", "T__1", "T__2", "T__3" ]
 
-    # $ANTLR start "T__4"
-    def mT__4(self, ):
+    grammarFileName = "fsm.g4"
 
-        try:
-            _type = T__4
-            _channel = DEFAULT_CHANNEL
+    def __init__(self, input=None, output:TextIO = sys.stdout):
+        super().__init__(input, output)
+        self.checkVersion("4.10.1")
+        self._interp = LexerATNSimulator(self, self.atn, self.decisionsToDFA, PredictionContextCache())
+        self._actions = None
+        self._predicates = None
 
-            # fsm__.g:7:6: ( '#' )
-            # fsm__.g:7:8: '#'
-            pass 
-            self.match(35)
 
-
-
-            self._state.type = _type
-            self._state.channel = _channel
-
-        finally:
-
-            pass
-
-    # $ANTLR end "T__4"
-
-
-
-    # $ANTLR start "T__5"
-    def mT__5(self, ):
-
-        try:
-            _type = T__5
-            _channel = DEFAULT_CHANNEL
-
-            # fsm__.g:8:6: ( '2' )
-            # fsm__.g:8:8: '2'
-            pass 
-            self.match(50)
-
-
-
-            self._state.type = _type
-            self._state.channel = _channel
-
-        finally:
-
-            pass
-
-    # $ANTLR end "T__5"
-
-
-
-    # $ANTLR start "T__6"
-    def mT__6(self, ):
-
-        try:
-            _type = T__6
-            _channel = DEFAULT_CHANNEL
-
-            # fsm__.g:9:6: ( 'A' )
-            # fsm__.g:9:8: 'A'
-            pass 
-            self.match(65)
-
-
-
-            self._state.type = _type
-            self._state.channel = _channel
-
-        finally:
-
-            pass
-
-    # $ANTLR end "T__6"
-
-
-
-    # $ANTLR start "T__7"
-    def mT__7(self, ):
-
-        try:
-            _type = T__7
-            _channel = DEFAULT_CHANNEL
-
-            # fsm__.g:10:6: ( 'x' )
-            # fsm__.g:10:8: 'x'
-            pass 
-            self.match(120)
-
-
-
-            self._state.type = _type
-            self._state.channel = _channel
-
-        finally:
-
-            pass
-
-    # $ANTLR end "T__7"
-
-
-
-    # $ANTLR start "T__8"
-    def mT__8(self, ):
-
-        try:
-            _type = T__8
-            _channel = DEFAULT_CHANNEL
-
-            # fsm__.g:11:6: ( 'B' )
-            # fsm__.g:11:8: 'B'
-            pass 
-            self.match(66)
-
-
-
-            self._state.type = _type
-            self._state.channel = _channel
-
-        finally:
-
-            pass
-
-    # $ANTLR end "T__8"
-
-
-
-    def mTokens(self):
-        # fsm__.g:1:8: ( T__4 | T__5 | T__6 | T__7 | T__8 )
-        alt1 = 5
-        LA1 = self.input.LA(1)
-        if LA1 == 35:
-            alt1 = 1
-        elif LA1 == 50:
-            alt1 = 2
-        elif LA1 == 65:
-            alt1 = 3
-        elif LA1 == 120:
-            alt1 = 4
-        elif LA1 == 66:
-            alt1 = 5
-        else:
-            nvae = NoViableAltException("", 1, 0, self.input)
-
-            raise nvae
-
-        if alt1 == 1:
-            # fsm__.g:1:10: T__4
-            pass 
-            self.mT__4()
-
-
-        elif alt1 == 2:
-            # fsm__.g:1:15: T__5
-            pass 
-            self.mT__5()
-
-
-        elif alt1 == 3:
-            # fsm__.g:1:20: T__6
-            pass 
-            self.mT__6()
-
-
-        elif alt1 == 4:
-            # fsm__.g:1:25: T__7
-            pass 
-            self.mT__7()
-
-
-        elif alt1 == 5:
-            # fsm__.g:1:30: T__8
-            pass 
-            self.mT__8()
-
-
-
-
-
-
-
- 
-
-
-
-def main(argv, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr):
-    from antlr3.main import LexerMain
-    main = LexerMain(fsmLexer)
-    main.stdin = stdin
-    main.stdout = stdout
-    main.stderr = stderr
-    main.execute(argv)
-
-
-if __name__ == '__main__':
-    main(sys.argv)

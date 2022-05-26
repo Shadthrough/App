@@ -1,417 +1,412 @@
-# $ANTLR 3.3 Nov 30, 2010 12:50:56 .\\static\\antlr\\fsm.g 2022-05-20 13:49:20
-
+# Generated from .\static\antlr\fsm.g4 by ANTLR 4.10.1
+# encoding: utf-8
+from antlr4 import *
+from io import StringIO
 import sys
-from antlr3 import *
-from antlr3.compat import set, frozenset
+if sys.version_info[1] > 5:
+	from typing import TextIO
+else:
+	from typing.io import TextIO
+
+def serializedATN():
+    return [
+        4,1,4,48,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,3,1,21,8,1,1,2,1,2,1,2,1,2,1,2,1,2,3,2,29,
+        8,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,38,8,3,1,4,1,4,1,4,1,4,1,4,1,
+        4,3,4,46,8,4,1,4,0,0,5,0,2,4,6,8,0,0,52,0,10,1,0,0,0,2,20,1,0,0,
+        0,4,28,1,0,0,0,6,37,1,0,0,0,8,45,1,0,0,0,10,11,3,2,1,0,11,1,1,0,
+        0,0,12,13,5,1,0,0,13,21,3,4,2,0,14,15,5,1,0,0,15,21,3,2,1,0,16,17,
+        5,2,0,0,17,21,3,4,2,0,18,19,5,3,0,0,19,21,3,4,2,0,20,12,1,0,0,0,
+        20,14,1,0,0,0,20,16,1,0,0,0,20,18,1,0,0,0,21,3,1,0,0,0,22,23,5,1,
+        0,0,23,29,3,6,3,0,24,25,5,1,0,0,25,29,3,4,2,0,26,27,5,4,0,0,27,29,
+        3,6,3,0,28,22,1,0,0,0,28,24,1,0,0,0,28,26,1,0,0,0,29,5,1,0,0,0,30,
+        31,5,1,0,0,31,38,3,8,4,0,32,33,5,1,0,0,33,38,3,6,3,0,34,38,5,0,0,
+        1,35,36,5,2,0,0,36,38,3,8,4,0,37,30,1,0,0,0,37,32,1,0,0,0,37,34,
+        1,0,0,0,37,35,1,0,0,0,38,7,1,0,0,0,39,40,5,1,0,0,40,46,3,6,3,0,41,
+        42,5,1,0,0,42,46,3,8,4,0,43,44,5,4,0,0,44,46,3,6,3,0,45,39,1,0,0,
+        0,45,41,1,0,0,0,45,43,1,0,0,0,46,9,1,0,0,0,4,20,28,37,45
+    ]
+
+class fsmParser ( Parser ):
+
+    grammarFileName = "fsm.g4"
+
+    atn = ATNDeserializer().deserialize(serializedATN())
+
+    decisionsToDFA = [ DFA(ds, i) for i, ds in enumerate(atn.decisionToState) ]
+
+    sharedContextCache = PredictionContextCache()
+
+    literalNames = [ "<INVALID>", "'#'", "'A'", "'x'", "'B'" ]
+
+    symbolicNames = [  ]
+
+    RULE_expr = 0
+    RULE_start = 1
+    RULE_s0 = 2
+    RULE_s1 = 3
+    RULE_s2 = 4
+
+    ruleNames =  [ "expr", "start", "s0", "s1", "s2" ]
+
+    EOF = Token.EOF
+    T__0=1
+    T__1=2
+    T__2=3
+    T__3=4
+
+    def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
+        super().__init__(input, output)
+        self.checkVersion("4.10.1")
+        self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
+        self._predicates = None
 
 
-# for convenience in actions
-HIDDEN = BaseRecognizer.HIDDEN
-
-# token types
-EOF=-1
-T__4=4
-T__5=5
-T__6=6
-T__7=7
-T__8=8
-
-# token names
-tokenNames = [
-    "<invalid>", "<EOR>", "<DOWN>", "<UP>", 
-    "'#'", "'2'", "'A'", "'x'", "'B'"
-]
 
 
+    class ExprContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def start(self):
+            return self.getTypedRuleContext(fsmParser.StartContext,0)
 
 
-class fsmParser(Parser):
-    grammarFileName = ".\\static\\antlr\\fsm.g"
-    antlr_version = version_str_to_tuple("3.3 Nov 30, 2010 12:50:56")
-    antlr_version_str = "3.3 Nov 30, 2010 12:50:56"
-    tokenNames = tokenNames
+        def getRuleIndex(self):
+            return fsmParser.RULE_expr
 
-    def __init__(self, input, state=None, *args, **kwargs):
-        if state is None:
-            state = RecognizerSharedState()
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterExpr" ):
+                listener.enterExpr(self)
 
-        super(fsmParser, self).__init__(input, state, *args, **kwargs)
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitExpr" ):
+                listener.exitExpr(self)
 
 
 
 
+    def expr(self):
 
-
-                
-
-
-        
-
-
-
-    # $ANTLR start "start"
-    # .\\static\\antlr\\fsm.g:3:1: start : ( '#' s1 | '2' s1 | '#' s0 | 'A' s0 | 'x' s0 );
-    def start(self, ):
-
+        localctx = fsmParser.ExprContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 0, self.RULE_expr)
         try:
-            try:
-                # .\\static\\antlr\\fsm.g:3:7: ( '#' s1 | '2' s1 | '#' s0 | 'A' s0 | 'x' s0 )
-                alt1 = 5
-                LA1 = self.input.LA(1)
-                if LA1 == 4:
-                    LA1_1 = self.input.LA(2)
-
-                    if (self.synpred1_fsm()) :
-                        alt1 = 1
-                    elif (self.synpred3_fsm()) :
-                        alt1 = 3
-                    else:
-                        if self._state.backtracking > 0:
-                            raise BacktrackingFailed
-
-                        nvae = NoViableAltException("", 1, 1, self.input)
-
-                        raise nvae
-
-                elif LA1 == 5:
-                    alt1 = 2
-                elif LA1 == 6:
-                    alt1 = 4
-                elif LA1 == 7:
-                    alt1 = 5
-                else:
-                    if self._state.backtracking > 0:
-                        raise BacktrackingFailed
-
-                    nvae = NoViableAltException("", 1, 0, self.input)
-
-                    raise nvae
-
-                if alt1 == 1:
-                    # .\\static\\antlr\\fsm.g:3:9: '#' s1
-                    pass 
-                    self.match(self.input, 4, self.FOLLOW_4_in_start20)
-                    self._state.following.append(self.FOLLOW_s1_in_start22)
-                    self.s1()
-
-                    self._state.following.pop()
-
-
-                elif alt1 == 2:
-                    # .\\static\\antlr\\fsm.g:4:3: '2' s1
-                    pass 
-                    self.match(self.input, 5, self.FOLLOW_5_in_start26)
-                    self._state.following.append(self.FOLLOW_s1_in_start28)
-                    self.s1()
-
-                    self._state.following.pop()
-
-
-                elif alt1 == 3:
-                    # .\\static\\antlr\\fsm.g:5:3: '#' s0
-                    pass 
-                    self.match(self.input, 4, self.FOLLOW_4_in_start32)
-                    self._state.following.append(self.FOLLOW_s0_in_start34)
-                    self.s0()
-
-                    self._state.following.pop()
-
-
-                elif alt1 == 4:
-                    # .\\static\\antlr\\fsm.g:6:3: 'A' s0
-                    pass 
-                    self.match(self.input, 6, self.FOLLOW_6_in_start38)
-                    self._state.following.append(self.FOLLOW_s0_in_start40)
-                    self.s0()
-
-                    self._state.following.pop()
-
-
-                elif alt1 == 5:
-                    # .\\static\\antlr\\fsm.g:7:3: 'x' s0
-                    pass 
-                    self.match(self.input, 7, self.FOLLOW_7_in_start44)
-                    self._state.following.append(self.FOLLOW_s0_in_start46)
-                    self.s0()
-
-                    self._state.following.pop()
-
-
-
-            except RecognitionException, re:
-                self.reportError(re)
-                self.recover(self.input, re)
+            self.enterOuterAlt(localctx, 1)
+            self.state = 10
+            self.start()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
         finally:
-
-            pass
-        return 
-
-    # $ANTLR end "start"
+            self.exitRule()
+        return localctx
 
 
-    # $ANTLR start "s0"
-    # .\\static\\antlr\\fsm.g:9:1: s0 : ( '#' s1 | 'B' s1 );
-    def s0(self, ):
+    class StartContext(ParserRuleContext):
+        __slots__ = 'parser'
 
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def s0(self):
+            return self.getTypedRuleContext(fsmParser.S0Context,0)
+
+
+        def start(self):
+            return self.getTypedRuleContext(fsmParser.StartContext,0)
+
+
+        def getRuleIndex(self):
+            return fsmParser.RULE_start
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterStart" ):
+                listener.enterStart(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitStart" ):
+                listener.exitStart(self)
+
+
+
+
+    def start(self):
+
+        localctx = fsmParser.StartContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 2, self.RULE_start)
         try:
-            try:
-                # .\\static\\antlr\\fsm.g:9:4: ( '#' s1 | 'B' s1 )
-                alt2 = 2
-                LA2_0 = self.input.LA(1)
+            self.state = 20
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,0,self._ctx)
+            if la_ == 1:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 12
+                self.match(fsmParser.T__0)
+                self.state = 13
+                self.s0()
+                pass
 
-                if (LA2_0 == 4) :
-                    alt2 = 1
-                elif (LA2_0 == 8) :
-                    alt2 = 2
-                else:
-                    if self._state.backtracking > 0:
-                        raise BacktrackingFailed
+            elif la_ == 2:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 14
+                self.match(fsmParser.T__0)
+                self.state = 15
+                self.start()
+                pass
 
-                    nvae = NoViableAltException("", 2, 0, self.input)
+            elif la_ == 3:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 16
+                self.match(fsmParser.T__1)
+                self.state = 17
+                self.s0()
+                pass
 
-                    raise nvae
-
-                if alt2 == 1:
-                    # .\\static\\antlr\\fsm.g:9:6: '#' s1
-                    pass 
-                    self.match(self.input, 4, self.FOLLOW_4_in_s054)
-                    self._state.following.append(self.FOLLOW_s1_in_s056)
-                    self.s1()
-
-                    self._state.following.pop()
-
-
-                elif alt2 == 2:
-                    # .\\static\\antlr\\fsm.g:10:3: 'B' s1
-                    pass 
-                    self.match(self.input, 8, self.FOLLOW_8_in_s060)
-                    self._state.following.append(self.FOLLOW_s1_in_s062)
-                    self.s1()
-
-                    self._state.following.pop()
-
+            elif la_ == 4:
+                self.enterOuterAlt(localctx, 4)
+                self.state = 18
+                self.match(fsmParser.T__2)
+                self.state = 19
+                self.s0()
+                pass
 
 
-            except RecognitionException, re:
-                self.reportError(re)
-                self.recover(self.input, re)
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
         finally:
-
-            pass
-        return 
-
-    # $ANTLR end "s0"
+            self.exitRule()
+        return localctx
 
 
-    # $ANTLR start "s1"
-    # .\\static\\antlr\\fsm.g:12:1: s1 : ( '#' s2 | 'A' s2 );
-    def s1(self, ):
+    class S0Context(ParserRuleContext):
+        __slots__ = 'parser'
 
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def s1(self):
+            return self.getTypedRuleContext(fsmParser.S1Context,0)
+
+
+        def s0(self):
+            return self.getTypedRuleContext(fsmParser.S0Context,0)
+
+
+        def getRuleIndex(self):
+            return fsmParser.RULE_s0
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterS0" ):
+                listener.enterS0(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitS0" ):
+                listener.exitS0(self)
+
+
+
+
+    def s0(self):
+
+        localctx = fsmParser.S0Context(self, self._ctx, self.state)
+        self.enterRule(localctx, 4, self.RULE_s0)
         try:
-            try:
-                # .\\static\\antlr\\fsm.g:12:4: ( '#' s2 | 'A' s2 )
-                alt3 = 2
-                LA3_0 = self.input.LA(1)
+            self.state = 28
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
+            if la_ == 1:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 22
+                self.match(fsmParser.T__0)
+                self.state = 23
+                self.s1()
+                pass
 
-                if (LA3_0 == 4) :
-                    alt3 = 1
-                elif (LA3_0 == 6) :
-                    alt3 = 2
-                else:
-                    if self._state.backtracking > 0:
-                        raise BacktrackingFailed
+            elif la_ == 2:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 24
+                self.match(fsmParser.T__0)
+                self.state = 25
+                self.s0()
+                pass
 
-                    nvae = NoViableAltException("", 3, 0, self.input)
-
-                    raise nvae
-
-                if alt3 == 1:
-                    # .\\static\\antlr\\fsm.g:12:6: '#' s2
-                    pass 
-                    self.match(self.input, 4, self.FOLLOW_4_in_s170)
-                    self._state.following.append(self.FOLLOW_s2_in_s172)
-                    self.s2()
-
-                    self._state.following.pop()
-
-
-                elif alt3 == 2:
-                    # .\\static\\antlr\\fsm.g:13:3: 'A' s2
-                    pass 
-                    self.match(self.input, 6, self.FOLLOW_6_in_s176)
-                    self._state.following.append(self.FOLLOW_s2_in_s178)
-                    self.s2()
-
-                    self._state.following.pop()
+            elif la_ == 3:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 26
+                self.match(fsmParser.T__3)
+                self.state = 27
+                self.s1()
+                pass
 
 
-
-            except RecognitionException, re:
-                self.reportError(re)
-                self.recover(self.input, re)
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
         finally:
-
-            pass
-        return 
-
-    # $ANTLR end "s1"
+            self.exitRule()
+        return localctx
 
 
-    # $ANTLR start "s2"
-    # .\\static\\antlr\\fsm.g:15:1: s2 : ( '#' s1 | 'B' s1 );
-    def s2(self, ):
+    class S1Context(ParserRuleContext):
+        __slots__ = 'parser'
 
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def s2(self):
+            return self.getTypedRuleContext(fsmParser.S2Context,0)
+
+
+        def s1(self):
+            return self.getTypedRuleContext(fsmParser.S1Context,0)
+
+
+        def EOF(self):
+            return self.getToken(fsmParser.EOF, 0)
+
+        def getRuleIndex(self):
+            return fsmParser.RULE_s1
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterS1" ):
+                listener.enterS1(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitS1" ):
+                listener.exitS1(self)
+
+
+
+
+    def s1(self):
+
+        localctx = fsmParser.S1Context(self, self._ctx, self.state)
+        self.enterRule(localctx, 6, self.RULE_s1)
         try:
-            try:
-                # .\\static\\antlr\\fsm.g:15:4: ( '#' s1 | 'B' s1 )
-                alt4 = 2
-                LA4_0 = self.input.LA(1)
+            self.state = 37
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,2,self._ctx)
+            if la_ == 1:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 30
+                self.match(fsmParser.T__0)
+                self.state = 31
+                self.s2()
+                pass
 
-                if (LA4_0 == 4) :
-                    alt4 = 1
-                elif (LA4_0 == 8) :
-                    alt4 = 2
-                else:
-                    if self._state.backtracking > 0:
-                        raise BacktrackingFailed
+            elif la_ == 2:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 32
+                self.match(fsmParser.T__0)
+                self.state = 33
+                self.s1()
+                pass
 
-                    nvae = NoViableAltException("", 4, 0, self.input)
+            elif la_ == 3:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 34
+                self.match(fsmParser.EOF)
+                pass
 
-                    raise nvae
-
-                if alt4 == 1:
-                    # .\\static\\antlr\\fsm.g:15:6: '#' s1
-                    pass 
-                    self.match(self.input, 4, self.FOLLOW_4_in_s286)
-                    self._state.following.append(self.FOLLOW_s1_in_s288)
-                    self.s1()
-
-                    self._state.following.pop()
-
-
-                elif alt4 == 2:
-                    # .\\static\\antlr\\fsm.g:16:3: 'B' s1
-                    pass 
-                    self.match(self.input, 8, self.FOLLOW_8_in_s292)
-                    self._state.following.append(self.FOLLOW_s1_in_s294)
-                    self.s1()
-
-                    self._state.following.pop()
+            elif la_ == 4:
+                self.enterOuterAlt(localctx, 4)
+                self.state = 35
+                self.match(fsmParser.T__1)
+                self.state = 36
+                self.s2()
+                pass
 
 
-
-            except RecognitionException, re:
-                self.reportError(re)
-                self.recover(self.input, re)
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
         finally:
-
-            pass
-        return 
-
-    # $ANTLR end "s2"
-
-    # $ANTLR start "synpred1_fsm"
-    def synpred1_fsm_fragment(self, ):
-        # .\\static\\antlr\\fsm.g:3:9: ( '#' s1 )
-        # .\\static\\antlr\\fsm.g:3:9: '#' s1
-        pass 
-        self.match(self.input, 4, self.FOLLOW_4_in_synpred1_fsm20)
-        self._state.following.append(self.FOLLOW_s1_in_synpred1_fsm22)
-        self.s1()
-
-        self._state.following.pop()
+            self.exitRule()
+        return localctx
 
 
-    # $ANTLR end "synpred1_fsm"
+    class S2Context(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def s1(self):
+            return self.getTypedRuleContext(fsmParser.S1Context,0)
 
 
-
-    # $ANTLR start "synpred3_fsm"
-    def synpred3_fsm_fragment(self, ):
-        # .\\static\\antlr\\fsm.g:5:3: ( '#' s0 )
-        # .\\static\\antlr\\fsm.g:5:3: '#' s0
-        pass 
-        self.match(self.input, 4, self.FOLLOW_4_in_synpred3_fsm32)
-        self._state.following.append(self.FOLLOW_s0_in_synpred3_fsm34)
-        self.s0()
-
-        self._state.following.pop()
+        def s2(self):
+            return self.getTypedRuleContext(fsmParser.S2Context,0)
 
 
-    # $ANTLR end "synpred3_fsm"
+        def getRuleIndex(self):
+            return fsmParser.RULE_s2
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterS2" ):
+                listener.enterS2(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitS2" ):
+                listener.exitS2(self)
 
 
 
 
-    # Delegated rules
+    def s2(self):
 
-    def synpred3_fsm(self):
-        self._state.backtracking += 1
-        start = self.input.mark()
+        localctx = fsmParser.S2Context(self, self._ctx, self.state)
+        self.enterRule(localctx, 8, self.RULE_s2)
         try:
-            self.synpred3_fsm_fragment()
-        except BacktrackingFailed:
-            success = False
-        else:
-            success = True
-        self.input.rewind(start)
-        self._state.backtracking -= 1
-        return success
+            self.state = 45
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,3,self._ctx)
+            if la_ == 1:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 39
+                self.match(fsmParser.T__0)
+                self.state = 40
+                self.s1()
+                pass
 
-    def synpred1_fsm(self):
-        self._state.backtracking += 1
-        start = self.input.mark()
-        try:
-            self.synpred1_fsm_fragment()
-        except BacktrackingFailed:
-            success = False
-        else:
-            success = True
-        self.input.rewind(start)
-        self._state.backtracking -= 1
-        return success
+            elif la_ == 2:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 41
+                self.match(fsmParser.T__0)
+                self.state = 42
+                self.s2()
+                pass
+
+            elif la_ == 3:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 43
+                self.match(fsmParser.T__3)
+                self.state = 44
+                self.s1()
+                pass
 
 
-
- 
-
-    FOLLOW_4_in_start20 = frozenset([4, 6])
-    FOLLOW_s1_in_start22 = frozenset([1])
-    FOLLOW_5_in_start26 = frozenset([4, 6])
-    FOLLOW_s1_in_start28 = frozenset([1])
-    FOLLOW_4_in_start32 = frozenset([4, 8])
-    FOLLOW_s0_in_start34 = frozenset([1])
-    FOLLOW_6_in_start38 = frozenset([4, 8])
-    FOLLOW_s0_in_start40 = frozenset([1])
-    FOLLOW_7_in_start44 = frozenset([4, 8])
-    FOLLOW_s0_in_start46 = frozenset([1])
-    FOLLOW_4_in_s054 = frozenset([4, 6])
-    FOLLOW_s1_in_s056 = frozenset([1])
-    FOLLOW_8_in_s060 = frozenset([4, 6])
-    FOLLOW_s1_in_s062 = frozenset([1])
-    FOLLOW_4_in_s170 = frozenset([4, 8])
-    FOLLOW_s2_in_s172 = frozenset([1])
-    FOLLOW_6_in_s176 = frozenset([4, 8])
-    FOLLOW_s2_in_s178 = frozenset([1])
-    FOLLOW_4_in_s286 = frozenset([4, 6])
-    FOLLOW_s1_in_s288 = frozenset([1])
-    FOLLOW_8_in_s292 = frozenset([4, 6])
-    FOLLOW_s1_in_s294 = frozenset([1])
-    FOLLOW_4_in_synpred1_fsm20 = frozenset([4, 6])
-    FOLLOW_s1_in_synpred1_fsm22 = frozenset([1])
-    FOLLOW_4_in_synpred3_fsm32 = frozenset([4, 8])
-    FOLLOW_s0_in_synpred3_fsm34 = frozenset([1])
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
 
 
 
-def main(argv, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr):
-    from antlr3.main import ParserMain
-    main = ParserMain("fsmLexer", fsmParser)
-    main.stdin = stdin
-    main.stdout = stdout
-    main.stderr = stderr
-    main.execute(argv)
 
 
-if __name__ == '__main__':
-    main(sys.argv)
