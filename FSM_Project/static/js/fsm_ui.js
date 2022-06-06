@@ -295,24 +295,29 @@ var fsm = (function() {
 		tmpTest : function () {
 			var serializedModel = delegate.serialize();
 			// var grammar = new File('fsm.g');
-			var line = 'grammar fsm;\noptions {language=Python3\;}\n'; //backtrack=true\;
+			var line = 'grammar fsm;\n'; //backtrack=true\;
 			var checked = [];
 			console.log(serializedModel)
 			var trans = serializedModel.dfa.transitions;
-			console.log(trans);
+			console.log(Object.keys(serializedModel.states));
+			var pass = true;
+			var dead = [];
 			line = line + `expr: start;\n`
 			Object.keys(trans).forEach(key => {
 				line = line + `${key} : `;
 				var paths = Object.keys(trans[key])
 				paths.forEach(path => {
+					if (pass){
+						line = line + `'#' ${key}\n| `;
+						pass = false;
+					}
 					if (checked.includes(trans[key][path])){
 						console.log('');
 					}
 					else{
 						line = line + `'#' ${trans[key][path]}\n| `;
-						line = line + `'#' ${key}\n| `;
 						checked.push(trans[key][path]);
-						console.log(checked);
+						// console.log(checked);
 					}
 					if (serializedModel.dfa.acceptStates.includes(key)) {
 						line = line + `EOF\n| `;
@@ -323,18 +328,30 @@ var fsm = (function() {
 					else{
 						line = line + `'${path}' ${trans[key][path]}`;
 					}
+					if (!Object.keys(serializedModel.dfa.transitions).includes(trans[key][path])){
+						dead.push(trans[key][path]);
+					}
 				});
+				pass = true;
 				checked = [];
 				line = line + `\n\;\n`;
 			});
+			dead.forEach(state => {
+				line = line + `${state} : '#' ${state}`;
+				if (serializedModel.dfa.acceptStates.includes(state)) {
+					line = line + `\n| EOF\n`;
+				}
+				line = line + `\;`;
+				});
 			var data = {
 				'grammar' : line,
-				'input' : $('#testString').val()
+				'input' : $('#testString').val(),
+				'states': Object.keys(serializedModel.states).length
 			};
-			console.log(data);
+			// console.log(data);
 			$.post("antlr", data=data, function (res) {
 				var accepts = res === 'Accepted' ? true : false;
-				$('#testResult').html(accepts ? 'Accepted' : 'Rejected').effect('highlight', {color: accepts ? '#bfb' : '#fbb'}, 1000);
+				$('#testResult').html(accepts ? 'Accepted' : 'Rejected').effect('highlight', {color: accepts ? '#bfb' : '#fbb'}, 5000);
 			});
 			// alert('f u');
 		},
