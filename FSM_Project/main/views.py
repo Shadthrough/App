@@ -1,6 +1,7 @@
 import os
 import sys
 from cgi import print_directory
+from urllib import response
 from django.http import HttpResponse
 from django.shortcuts import render
 from antlr4 import *
@@ -37,6 +38,7 @@ def antlr(request):
     sys.path.append('.\static\\antlr')
     from fsmLexer import fsmLexer
     from fsmParser import fsmParser
+    # from fsmListener import fsmListener
     input = InputStream(input)
     lexer = fsmLexer(input)
     lexer.addErrorListener( MyErrorListener() )
@@ -58,14 +60,18 @@ def antlr(request):
 
     # tree = parser.expr()
     try: # java org.antlr.v4.gui.TestRig fsm expr -tree .\test.txt > ast.dot
+        parser.buildParseTrees = True
         tree = parser.expr()
+        parser.paths.reverse()
+        print(parser.paths)
     except:
         print('Rejected')
-        return HttpResponse('Rejected')
+        print(parser.paths)
+        return HttpResponse([f'Rejected|{parser.paths}'])
     
 
 
-    return HttpResponse('Accepted')
+    return HttpResponse(f'Accepted|{parser.paths}')
 
 def index(request):
     return render(request, 'main/index.html')
