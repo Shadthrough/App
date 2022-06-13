@@ -72,7 +72,18 @@
           <span class="futureInput"></span>
         </span>
       </h5>
-      <div id="resultConsole"></div>
+      <div id="resultConsole"><img src='https://g.gravizo.com/svg?
+        digraph G {
+          expr -> start A (s0 x # (s0 # (s0 # (s0 B (s1 EOF)))))))
+          main -> init;
+          main -> cleanup;
+          execute -> make_string;
+          execute -> printf
+          init -> make_string;
+          main -> printf;
+          execute -> compare;
+        }
+       '/></div>
     </div>
 
     <div id="saveLoadDialog">

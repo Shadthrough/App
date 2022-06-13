@@ -1,4 +1,4 @@
-// Generated from .\static\antlr\fsm.g4 by ANTLR 4.10.1
+// Generated from .\fsm.g4 by ANTLR 4.10.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -127,11 +127,11 @@ public class fsmParser extends Parser {
 	}
 
 	public static class StartContext extends ParserRuleContext {
-		public S0Context s0() {
-			return getRuleContext(S0Context.class,0);
-		}
 		public StartContext start() {
 			return getRuleContext(StartContext.class,0);
+		}
+		public S0Context s0() {
+			return getRuleContext(S0Context.class,0);
 		}
 		public StartContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -160,7 +160,7 @@ public class fsmParser extends Parser {
 				setState(12);
 				match(T__0);
 				setState(13);
-				s0();
+				start();
 				}
 				break;
 			case 2:
@@ -169,7 +169,7 @@ public class fsmParser extends Parser {
 				setState(14);
 				match(T__0);
 				setState(15);
-				start();
+				s0();
 				}
 				break;
 			case 3:
@@ -204,11 +204,11 @@ public class fsmParser extends Parser {
 	}
 
 	public static class S0Context extends ParserRuleContext {
-		public S1Context s1() {
-			return getRuleContext(S1Context.class,0);
-		}
 		public S0Context s0() {
 			return getRuleContext(S0Context.class,0);
+		}
+		public S1Context s1() {
+			return getRuleContext(S1Context.class,0);
 		}
 		public S0Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -237,7 +237,7 @@ public class fsmParser extends Parser {
 				setState(22);
 				match(T__0);
 				setState(23);
-				s1();
+				s0();
 				}
 				break;
 			case 2:
@@ -246,7 +246,7 @@ public class fsmParser extends Parser {
 				setState(24);
 				match(T__0);
 				setState(25);
-				s0();
+				s1();
 				}
 				break;
 			case 3:
@@ -272,11 +272,11 @@ public class fsmParser extends Parser {
 	}
 
 	public static class S1Context extends ParserRuleContext {
-		public S2Context s2() {
-			return getRuleContext(S2Context.class,0);
-		}
 		public S1Context s1() {
 			return getRuleContext(S1Context.class,0);
+		}
+		public S2Context s2() {
+			return getRuleContext(S2Context.class,0);
 		}
 		public TerminalNode EOF() { return getToken(fsmParser.EOF, 0); }
 		public S1Context(ParserRuleContext parent, int invokingState) {
@@ -306,7 +306,7 @@ public class fsmParser extends Parser {
 				setState(30);
 				match(T__0);
 				setState(31);
-				s2();
+				s1();
 				}
 				break;
 			case 2:
@@ -315,7 +315,7 @@ public class fsmParser extends Parser {
 				setState(32);
 				match(T__0);
 				setState(33);
-				s1();
+				s2();
 				}
 				break;
 			case 3:
@@ -348,11 +348,11 @@ public class fsmParser extends Parser {
 	}
 
 	public static class S2Context extends ParserRuleContext {
-		public S1Context s1() {
-			return getRuleContext(S1Context.class,0);
-		}
 		public S2Context s2() {
 			return getRuleContext(S2Context.class,0);
+		}
+		public S1Context s1() {
+			return getRuleContext(S1Context.class,0);
 		}
 		public S2Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -381,7 +381,7 @@ public class fsmParser extends Parser {
 				setState(39);
 				match(T__0);
 				setState(40);
-				s1();
+				s2();
 				}
 				break;
 			case 2:
@@ -390,7 +390,7 @@ public class fsmParser extends Parser {
 				setState(41);
 				match(T__0);
 				setState(42);
-				s2();
+				s1();
 				}
 				break;
 			case 3:
@@ -428,27 +428,27 @@ public class fsmParser extends Parser {
 		"4\u0000\n\u0001\u0000\u0000\u0000\u0002\u0014\u0001\u0000\u0000\u0000"+
 		"\u0004\u001c\u0001\u0000\u0000\u0000\u0006%\u0001\u0000\u0000\u0000\b"+
 		"-\u0001\u0000\u0000\u0000\n\u000b\u0003\u0002\u0001\u0000\u000b\u0001"+
-		"\u0001\u0000\u0000\u0000\f\r\u0005\u0001\u0000\u0000\r\u0015\u0003\u0004"+
-		"\u0002\u0000\u000e\u000f\u0005\u0001\u0000\u0000\u000f\u0015\u0003\u0002"+
-		"\u0001\u0000\u0010\u0011\u0005\u0002\u0000\u0000\u0011\u0015\u0003\u0004"+
+		"\u0001\u0000\u0000\u0000\f\r\u0005\u0001\u0000\u0000\r\u0015\u0003\u0002"+
+		"\u0001\u0000\u000e\u000f\u0005\u0001\u0000\u0000\u000f\u0015\u0003\u0004"+
+		"\u0002\u0000\u0010\u0011\u0005\u0002\u0000\u0000\u0011\u0015\u0003\u0004"+
 		"\u0002\u0000\u0012\u0013\u0005\u0003\u0000\u0000\u0013\u0015\u0003\u0004"+
 		"\u0002\u0000\u0014\f\u0001\u0000\u0000\u0000\u0014\u000e\u0001\u0000\u0000"+
 		"\u0000\u0014\u0010\u0001\u0000\u0000\u0000\u0014\u0012\u0001\u0000\u0000"+
 		"\u0000\u0015\u0003\u0001\u0000\u0000\u0000\u0016\u0017\u0005\u0001\u0000"+
-		"\u0000\u0017\u001d\u0003\u0006\u0003\u0000\u0018\u0019\u0005\u0001\u0000"+
-		"\u0000\u0019\u001d\u0003\u0004\u0002\u0000\u001a\u001b\u0005\u0004\u0000"+
+		"\u0000\u0017\u001d\u0003\u0004\u0002\u0000\u0018\u0019\u0005\u0001\u0000"+
+		"\u0000\u0019\u001d\u0003\u0006\u0003\u0000\u001a\u001b\u0005\u0004\u0000"+
 		"\u0000\u001b\u001d\u0003\u0006\u0003\u0000\u001c\u0016\u0001\u0000\u0000"+
 		"\u0000\u001c\u0018\u0001\u0000\u0000\u0000\u001c\u001a\u0001\u0000\u0000"+
 		"\u0000\u001d\u0005\u0001\u0000\u0000\u0000\u001e\u001f\u0005\u0001\u0000"+
-		"\u0000\u001f&\u0003\b\u0004\u0000 !\u0005\u0001\u0000\u0000!&\u0003\u0006"+
-		"\u0003\u0000\"&\u0005\u0000\u0000\u0001#$\u0005\u0002\u0000\u0000$&\u0003"+
-		"\b\u0004\u0000%\u001e\u0001\u0000\u0000\u0000% \u0001\u0000\u0000\u0000"+
-		"%\"\u0001\u0000\u0000\u0000%#\u0001\u0000\u0000\u0000&\u0007\u0001\u0000"+
-		"\u0000\u0000\'(\u0005\u0001\u0000\u0000(.\u0003\u0006\u0003\u0000)*\u0005"+
-		"\u0001\u0000\u0000*.\u0003\b\u0004\u0000+,\u0005\u0004\u0000\u0000,.\u0003"+
-		"\u0006\u0003\u0000-\'\u0001\u0000\u0000\u0000-)\u0001\u0000\u0000\u0000"+
-		"-+\u0001\u0000\u0000\u0000.\t\u0001\u0000\u0000\u0000\u0004\u0014\u001c"+
-		"%-";
+		"\u0000\u001f&\u0003\u0006\u0003\u0000 !\u0005\u0001\u0000\u0000!&\u0003"+
+		"\b\u0004\u0000\"&\u0005\u0000\u0000\u0001#$\u0005\u0002\u0000\u0000$&"+
+		"\u0003\b\u0004\u0000%\u001e\u0001\u0000\u0000\u0000% \u0001\u0000\u0000"+
+		"\u0000%\"\u0001\u0000\u0000\u0000%#\u0001\u0000\u0000\u0000&\u0007\u0001"+
+		"\u0000\u0000\u0000\'(\u0005\u0001\u0000\u0000(.\u0003\b\u0004\u0000)*"+
+		"\u0005\u0001\u0000\u0000*.\u0003\u0006\u0003\u0000+,\u0005\u0004\u0000"+
+		"\u0000,.\u0003\u0006\u0003\u0000-\'\u0001\u0000\u0000\u0000-)\u0001\u0000"+
+		"\u0000\u0000-+\u0001\u0000\u0000\u0000.\t\u0001\u0000\u0000\u0000\u0004"+
+		"\u0014\u001c%-";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -293,9 +293,10 @@ var fsm = (function() {
 	return {
 
 		tmpTest : function () {
+			$('#resultConsole').empty();
 			var serializedModel = delegate.serialize();
 			// var grammar = new File('fsm.g');
-			var line = 'grammar fsm;\n@parser::members {\npaths = []\n}\n'; //backtrack=true\; {parser.paths.append('${path}->')}
+			var line = 'grammar fsm;\n'; //backtrack=true\; {parser.paths.append('${path}->')} @parser::members {\npaths = []\n}\n
 			var checked = [];
 			console.log(serializedModel)
 			var trans = serializedModel.dfa.transitions;
@@ -315,7 +316,7 @@ var fsm = (function() {
 						console.log('');
 					}
 					else{
-						line = line + `'#' ${trans[key][path]} {self.paths.append('-${path}>${trans[key][path]}')}\n| `;
+						line = line + `'#' ${trans[key][path]} \n| `; //{self.paths.append('-${path}>${trans[key][path]}')}
 						checked.push(trans[key][path]);
 						// console.log(checked);
 					}
@@ -323,10 +324,10 @@ var fsm = (function() {
 						line = line + `EOF\n| `;
 					}
 					if (paths[paths.length-1] != path){
-						line = line + `'${path}' ${trans[key][path]} {self.paths.append('-${path}>${trans[key][path]}')}\n| `;
+						line = line + `'${path}' ${trans[key][path]} \n| `; //{self.paths.append('-${path}>${trans[key][path]}')}
 					}
 					else{
-						line = line + `'${path}' ${trans[key][path]} {self.paths.append('-${path}>${trans[key][path]}')}`;
+						line = line + `'${path}' ${trans[key][path]} `; //{self.paths.append('-${path}>${trans[key][path]}')}
 					}
 					if (!Object.keys(serializedModel.dfa.transitions).includes(trans[key][path])){
 						dead.push(trans[key][path]);
@@ -354,7 +355,7 @@ var fsm = (function() {
 				console.log(res[0])
 				var accepts = res[0] === 'Accepted' ? true : false;
 				$('#testResult').html(accepts ? 'Accepted' : 'Rejected').effect('highlight', {color: accepts ? '#bfb' : '#fbb'}, 5000);
-				$('<div></div>', {'class':'pending', title:'Pending'}).append(res[1]).appendTo('#resultConsole');
+				$(res[1]).appendTo('#resultConsole');
 			});
 			// alert('f u');
 		},
