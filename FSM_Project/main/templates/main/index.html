@@ -1,112 +1,208 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-    <meta charset="utf-8">
-    {% load static %}
-    <title>FSM Redactor</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/smoothness/jquery-ui-1.10.0.custom.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/fsm.css' %}" />
-    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}">
-    <link href='https://css.gg/arrow-right-r.css' rel='stylesheet'>
-    <link href='https://css.gg/play-stop-r.css' rel='stylesheet'>
-    <link href='https://css.gg/debug.css' rel='stylesheet'>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
-  </head>
 
-  <body>
-    <div id="tools" style="min-height: 100vh;">
-      <div style="text-align:center; margin-top: 50%;">
-        <!-- <button id="saveBtn" onclick="fsm.save();" title="Save">Сохранить</button><br>
+<head>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+  <meta charset="utf-8">
+  {% load static %}
+  <title>FSM Redactor</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/smoothness/jquery-ui-1.10.0.custom.min.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/fsm.css' %}" />
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}">
+  <link href='https://css.gg/arrow-right-r.css' rel='stylesheet'>
+  <link href='https://css.gg/play-stop-r.css' rel='stylesheet'>
+  <link href='https://css.gg/debug.css' rel='stylesheet'>
+  <style type="text/css">
+    .real-hint {
+      background-color: #fff;
+      border: 1px solid #aaa;
+      border-radius: 10px;
+      display: none;
+      padding: 5px 10px;
+      position: absolute;
+      width: 250px;
+      z-index: 99;
+    }
+  
+    .real-hint .hint-caption {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  
+    .real-hint .prm-cross {
+      background: url("/images/cross.jpg") no-repeat scroll right top rgba(0, 0, 0, 0);
+      cursor: pointer;
+      float: right;
+      height: 16px;
+      margin-top: 3px;
+      padding-left: 15px;
+      right: 10px;
+      width: 16px;
+    }
+  
+    .real-show-hint {
+      cursor: pointer;
+      border-bottom: dashed 1px;
+      color: #636363;
+    }
+  </style>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+</head>
+
+<body>
+  <div id="tools" style="min-height: 100vh;">
+    <div style="text-align:center; margin-top: 50%;">
+      <!-- <button id="saveBtn" onclick="fsm.save();" title="Save">Сохранить</button><br>
         <button id="loadBtn" onclick="fsm.load();" title="Load">Загрузить</button><br> -->
-        <button id="addStateBtn" onclick="fsm.addState();" title="Add State">Добавить состояние</button><br>
-      </div>
-      <label>Строка для тестирования:</label>
-      <input id="testString" type="text" value="" /><br />
-      <div style="text-align:center; margin-top: 5px; margin-bottom: 10px;">
-        <button id="testBtn" onclick="fsm.test($('#testString').val());" class="image" title="Test"><i class="gg-arrow-right-r"></i></button>
-        <button id="stopBtn" onclick="fsm.debugStop();" disabled="disabled" class="image" title="Stop Debug"><i class="gg-play-stop-r"></i></button>
-        <button id="debugBtn" onclick="fsm.debug($('#testString').val());" class="image" title="Start/Step Debug"><div><i class="gg-play-stop-r" style="visibility: hidden; margin-right: 50%;"><i class="gg-debug" style="transform: scale(var(--ggs,1.2)); visibility: visible;"></i></i></div></button>
-        <br>
-        <!-- <form action="" method="post" //fsm.tmpTest();//> -->
-          <button id="tmpbtn" onclick="fsm.tmpTest();" title="Tmp">TMP Test</button>
-        <!-- </form> -->
-      </div>
-      <div id="testResult">&nbsp;</div>
+      <button id="addStateBtn" onclick="fsm.addState();" title="Add State">Добавить состояние</button><br>
+    </div>
+    <label>Строка для тестирования:</label>
+    <input id="testString" type="text" value="" /><br />
+    <span class="real-show-hint" data-hint="#real-hint-1" style="margin-left: 30%;">Подсказка</span>
+    <div id="real-hint-1" class="real-hint">
+      <div class="prm-cross"></div>
+      <span class="hint-caption">Синтаксис выражений</span><br/>
+      * - любое количество событий <br>
+      ? - 0 или 1 событие <br>
+      + - одно или более событие <br>
+    </div>
+    <div style="text-align:center; margin-top: 5px; margin-bottom: 10px;"> <!--  -->
+      <button id="testBtn" onclick="fsm.tmpTest();" class="image" title="Test"><i class="gg-arrow-right-r"></i></button>
+      <button id="stopBtn" onclick="fsm.debugStop();" disabled="disabled" class="image" title="Stop Debug"><i
+          class="gg-play-stop-r"></i></button>
+      <button id="debugBtn" onclick="fsm.debug($('#testString').val());" class="image" title="Start/Step Debug">
+        <div><i class="gg-play-stop-r" style="visibility: hidden; margin-right: 50%;"><i class="gg-debug"
+              style="transform: scale(var(--ggs,1.2)); visibility: visible;"></i></i></div>
+      </button>
+    </div>
+    <div id="testResult">&nbsp;</div>
 
-      <hr>
+    <hr>
 
-      <div style="text-align:center; margin-top: 20%; margin-bottom: 20%;">
-        <h4>Ковертация</h4>
-        <button id="FSMToCodeBtn" onclick="fsm.save();" title="FSM To Code" style="margin-top: 3px;">Автомат в код</button><br>
-        <button id="CodetoFSMBtn" onclick="fsm.load();" title="Code to FSM" style="margin-top: 3px;">Код в автомат</button><br>
-      </div>
-
-      <hr>
-      <h5>
-        Bulk Testing
-        <button id="bulkTestBtn" class="image" style="margin-left:15px;" onclick="fsm.test({accept:$('#acceptStrings').val().split('\n'), reject:$('#rejectStrings').val().split('\n')});" title="Run Bulk Tests"><i class="gg-arrow-right-r"></i></button>
-      </h5>
-      <label>Accept (one per line):</label>
-      <textarea id="acceptStrings" style="margin-bottom:5px;"></textarea>
-
+    <div style="text-align:center; margin-top: 20%; margin-bottom: 20%;">
+      <h5>Конвертация:</h5>
+      <button id="FSMToCodeBtn" onclick="fsm.save();" title="FSM To Code" style="margin-top: 3px;">Автомат в
+        код</button><br>
+      <button id="CodetoFSMBtn" onclick="fsm.load();" title="Code to FSM" style="margin-top: 3px;">Код в
+        автомат</button><br>
     </div>
 
-    <div id="mainHolder">
-      <h1>Редактор конечных автоматов
-          <button class="delegate" disabled="disabled" title="Deterministic Finite Automaton" style="visibility: hidden">DFA</button>
-          <button id="resetBtn" onclick="fsm.reset();" class="btn btn-primary" title="Reset">Сбросить</button>
-          <select id="examples">
-            <option value="">Примеры</option>
-          </select>
-      </h1>
-      <div id="aliasArea">Скрыть<span><br> asdasdadadadadadadadadadadadadad</span></div>
-      <div id="machineGraph">
-          <div id="dfaStatus" style="display:none;"></div>
-      </div>
-      <h5 id="bulkResultHeader" style="text-align:left;">
-        Результаты:
-        <span id="fsmDebugInputStatus" class="fsmStatus" style="display:none;">
-          <span class="consumedInput"></span>
-          <span class="currentInput"></span>
-          <span class="futureInput"></span>
-        </span>
-      </h5>
-      <div id="resultConsole"><img src='https://g.gravizo.com/svg?
-        digraph G {
-          expr -> start A (s0 x # (s0 # (s0 # (s0 B (s1 EOF)))))))
-          main -> init;
-          main -> cleanup;
-          execute -> make_string;
-          execute -> printf
-          init -> make_string;
-          main -> printf;
-          execute -> compare;
-        }
-       '/></div>
-    </div>
+    <hr>
+    <h5>
+      Группа строк для тестирования
+      <button id="bulkTestBtn" class="image" style="margin-left:15px;"
+        onclick="fsm.test({accept:$('#acceptStrings').val().split('\n'), reject:$('#rejectStrings').val().split('\n')});"
+        title="Run Bulk Tests"><i class="gg-arrow-right-r"></i></button>
+    </h5>
+    <label>Ввод - одна цепочка на строке:</label>
+    <textarea id="acceptStrings" style="margin-bottom:5px; font-size: 20px;"></textarea>
 
-    <div id="saveLoadDialog">
-      <div id="saveLoadTabs">
-        <ul>
-          <li><a href="#plaintext">JSON</a></li>
-          <li><a href="#code">C code</a></li>
-        </ul>
-        <div id="plaintext"><textarea></textarea></div>
-        <div id="code"><textarea></textarea></div>
+  </div>
+
+  <div id="mainHolder">
+    <h1>Редактор конечных автоматов
+      <button class="delegate" disabled="disabled" title="Deterministic Finite Automaton"
+        style="visibility: hidden">DFA</button>
+      <button id="resetBtn" onclick="fsm.reset();" class="btn btn-primary" title="Reset">Сбросить</button>
+      <select id="examples">
+        <option value="">Примеры</option>
+      </select>
+    </h1>
+    <div id="aliasArea" style="display: block;"><button onclick="" title="FSM To Code" style="
+      margin-left: 5px;
+      margin-right: 5px;
+      padding: 8px;
+      display: inline-block;
+      background-color: #555555;
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;">Скрыть псевдонимы</button><hr>
+      <div id="toggle" style="display: block;">
+        <span>AA: Await ACK</span><hr>
+        <span>r: Resend data</span><hr>
+        <span>s: Data send request</span><hr>
+        <span>a: ACK recieved</span><hr>
       </div>
     </div>
+    <div id="machineGraph" style="background-color: white;">
+      <div id="dfaStatus" style="display:none;"></div>
+    </div>
+    <h5 id="bulkResultHeader" style="text-align:left;">
+      Результаты:
+      <span id="fsmDebugInputStatus" class="fsmStatus" style="display:none;">
+        <span class="consumedInput"></span>
+        <span class="currentInput"></span>
+        <span class="futureInput"></span>
+      </span>
+    </h5>
+    <div id="resultConsole" style="font-size: 17px;">
+      <span style="background-color: #78e778; width: 100%; display: block; padding: 2px;">*ARS* -- Accepted -- [-S>A_A, -A>Idle, -R>Idle, -S>A_A]</span>
+      <span style="background-color: lightgreen; width: 100%; display: block; padding: 2px;">*SRS* -- Accepted -- ['-S>A_A', '-R>A_A', '-S>A_A', '-A>Idle']</span>
+      <span style="background-color: tomato; width: 100%; display: block; padding: 2px;">*AA* -- Rejected --</span>
+    </div>
+  </div>
 
-    <script src="{% static 'js/jquery-1.9.0.min.js' %}"></script>
-    <script src="{% static 'js/jquery-ui-1.10.0.custom.min.js' %}"></script>
-    <script src="{% static 'js/jquery.jsPlumb-1.3.16-all-min.js' %}"></script>
-    <script src="{% static 'js/d3.min.js' %}"></script>
-    <script src="{% static 'js/fsm_examples.js' %}"></script>
-    <script src="{% static 'js/DFA.js' %}"></script>
-    <script src="{% static 'js/fsm_ui.js' %}"></script>
-    <script src="{% static 'js/dfa_delegate.js' %}"></script>
-    <!-- <script type="text/javascript" src="{% static 'js/antlr3-all.js' %}"></script>
+  <div id="saveLoadDialog">
+    <div id="saveLoadTabs">
+      <ul>
+        <li><a href="#plaintext">JSON</a></li>
+        <li><a href="#code">C code</a></li>
+      </ul>
+      <div id="plaintext"><textarea></textarea></div>
+      <div id="code"><textarea></textarea></div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/jquery-1.9.0.min.js' %}"></script>
+  <script src="{% static 'js/jquery-ui-1.10.0.custom.min.js' %}"></script>
+  <script src="{% static 'js/jquery.jsPlumb-1.3.16-all-min.js' %}"></script>
+  <script src="{% static 'js/d3.min.js' %}"></script>
+  <script src="{% static 'js/fsm_examples.js' %}"></script>
+  <script src="{% static 'js/DFA.js' %}"></script>
+  <script src="{% static 'js/fsm_ui.js' %}"></script>
+  <script src="{% static 'js/dfa_delegate.js' %}"></script>
+  <script type="text/javascript">
+    $(function () {
+      $('.real-show-hint').on("mouseover mouseout", function (e) {
+        e = e || window.event;
+        e.preventDefault();
+        var ypos = $(this).offset().top + 24;
+        var xpos = $(this).offset().left;
+        var RealHint = $(this).data('hint');
+        $(RealHint).css('top', ypos);
+        $(RealHint).css('left', xpos);
+        $(RealHint).toggle('fast');
+        return;
+      });
+
+      $('.prm-cross').on('click', function () {
+        $(this).parent().hide('fast');
+        return false;
+      });
+
+      document.onclick = function (e) {
+        if ($(e.target).hasClass('real-hint') == false)
+          $('.real-hint').hide('fast');
+        return;
+      }
+    });
+    // $('.real-show-hint').on("mouseover mouseout", function (e) {
+    //     e = e || window.event;
+    //     e.preventDefault();
+    //     var ypos = $(this).offset().top + 24;
+    //     var xpos = $(this).offset().left;
+    //     var RealHint = $(this).data('hint');
+    //     $(RealHint).css('top', ypos);
+    //     $(RealHint).css('left', xpos);
+    //     $(RealHint).toggle('fast');
+    //     return;
+    //   });
+  </script>
+  <!-- <script type="text/javascript" src="{% static 'js/antlr3-all.js' %}"></script>
     <script type="text/javascript" src="{% static 'antlr/CalculatorLexer.js' %}"></script>
     <script type="text/javascript" src="{% static 'antlr/CalculatorParser.js' %}"></script> -->
-  </body>
+</body>
+
 </html>

@@ -9,7 +9,6 @@ h1 {
   text-align: center;
   font-size: 14pt;
   font-weight: normal;
-  letter-spacing: 3px;
   word-spacing: 20px;
 }
   #resetBtn {
@@ -27,7 +26,7 @@ h1 {
   #addStateBtn {
     margin: 2px;
     padding: 8px;
-    background-color: #008CBA;;
+    background-color: #ba0057;;
     border: none;
     color: white;
     text-align: center;
@@ -107,13 +106,13 @@ h5 {
 }
 
 #aliasArea {
-  min-height: 330px;
+  min-height: 20px;
   padding: 5px;
-  background-color: rgb(170, 170, 170);
+  background-color: #e7e7e7;
   border-radius: 5px;
   right: 0;
   position: absolute;
-  z-index: 1;
+  z-index: 1000;
   display: hidden;
 }
 
@@ -336,7 +335,7 @@ span.tranEnd:before {
 
 ._jsPlumb_overlay {
   z-index: 5;
-  background-color: #e7e7e7;
+  background-color: white;
 }
 
 /* Image Configurations */

@@ -4,6 +4,7 @@ var fsm = (function() {
 	var container = null;
 	var stateCounter = 0;
 	var saveLoadDialog = null;
+	var alias = {};
 
 	var localStorageAvailable = function () {
 		return (typeof Storage !== "undefined"  && typeof localStorage !== "undefined");
@@ -42,7 +43,6 @@ var fsm = (function() {
 			width: 500,
 			height: 450,
 			open: function() {
-				// Focus on either the machineName entry box or the textarea depending on what panel is active
 				saveLoadDialog.find("div.ui-tabs-panel:not(.ui-tabs-hide)").find('input, textarea').focus();
 
 			}
@@ -114,7 +114,7 @@ var fsm = (function() {
 			var stateId = cBox.closest('div.state').attr('id');
 			if (cBox.prop('checked')) {
 				delegate.fsm().addAcceptState(stateId);
-				document.getElementById(stateId).style.border = 'thick double green';
+				document.getElementById(stateId).style.border = 'thick double #55a';
 			} else {
 				delegate.fsm().removeAcceptState(stateId);
 				document.getElementById(stateId).style.border = 'solid 2px #555555';
@@ -178,7 +178,7 @@ var fsm = (function() {
 			}
 			if (data.isAccept) {
 				state.find('input.isAccept').prop('checked', true);
-				document.getElementById(state.attr('id')).style.border = 'thick double green';
+				document.getElementById(state.attr('id')).style.border = 'thick double #55a';
 			} //---------------------------------------------------
 		});
 
@@ -293,10 +293,10 @@ var fsm = (function() {
 	return {
 
 		tmpTest : function () {
-			$('#resultConsole').empty();
+			// $('#resultConsole').empty();
 			var serializedModel = delegate.serialize();
 			// var grammar = new File('fsm.g');
-			var line = 'grammar fsm;\n'; //backtrack=true\; {parser.paths.append('${path}->')} @parser::members {\npaths = []\n}\n
+			var line = 'grammar fsm;\n@parser::members {\npaths = []\n}\n'; //backtrack=true\; {parser.paths.append('${path}->')} @parser::members {\nself.paths = []\n}\n
 			var checked = [];
 			console.log(serializedModel)
 			var trans = serializedModel.dfa.transitions;
@@ -316,7 +316,7 @@ var fsm = (function() {
 						console.log('');
 					}
 					else{
-						line = line + `'#' ${trans[key][path]} \n| `; //{self.paths.append('-${path}>${trans[key][path]}')}
+						line = line + `'#' ${trans[key][path]} {self.paths.append('-${path}>${trans[key][path]}')}\n| `; //{self.paths.append('-${path}>${trans[key][path]}')}
 						checked.push(trans[key][path]);
 						// console.log(checked);
 					}
@@ -324,10 +324,10 @@ var fsm = (function() {
 						line = line + `EOF\n| `;
 					}
 					if (paths[paths.length-1] != path){
-						line = line + `'${path}' ${trans[key][path]} \n| `; //{self.paths.append('-${path}>${trans[key][path]}')}
+						line = line + `'${path}' ${trans[key][path]} {self.paths.append('-${path}>${trans[key][path]}')}\n| `; //{self.paths.append('-${path}>${trans[key][path]}')}
 					}
 					else{
-						line = line + `'${path}' ${trans[key][path]} `; //{self.paths.append('-${path}>${trans[key][path]}')}
+						line = line + `'${path}' ${trans[key][path]} {self.paths.append('-${path}>${trans[key][path]}')}`; //{self.paths.append('-${path}>${trans[key][path]}')}
 					}
 					if (!Object.keys(serializedModel.dfa.transitions).includes(trans[key][path])){
 						dead.push(trans[key][path]);
@@ -342,22 +342,23 @@ var fsm = (function() {
 				if (serializedModel.dfa.acceptStates.includes(state)) {
 					line = line + `\n| EOF\n`;
 				}
-				line = line + `\;`;
+				line = line + `\;\n`;
 				});
 			var data = {
 				'grammar' : line,
 				'input' : $('#testString').val(),
 				'states': Object.keys(serializedModel.states).length
 			};
-			// console.log(data);
 			$.post("antlr", data=data, function (res) {
 				res = res.split('|');
 				console.log(res[0])
 				var accepts = res[0] === 'Accepted' ? true : false;
-				$('#testResult').html(accepts ? 'Accepted' : 'Rejected').effect('highlight', {color: accepts ? '#bfb' : '#fbb'}, 5000);
+				$('#testResult').html(accepts ? 'Accepted' : 'Rejected').effect('highlight', {color: accepts ? '#bfb' : '#fbb'}, 2000);
+				
+				$('<div></div>', {'class':'', 'style':(accepts ? 'background-color: lightgreen;' : 'background-color: tomato;') + 'width: 100%; display: block; padding: 2px;'}).append(data.input + ' -- ' + res[0] + '\t' + res[1]).appendTo('#resultConsole');
+				
 				$(res[1]).appendTo('#resultConsole');
 			});
-			// alert('f u');
 		},
 
 		init: function() {
@@ -409,8 +410,13 @@ var fsm = (function() {
 			if (state.attr('id') !== 'start') {
 				var newname = window.prompt('New name', state.data('displayid'));
 				if (newname) {
-					state.data('displayid', newname);
-					state.find('.stateName').text(newname);
+					if (newname.length > 6) {
+						// switchNote
+					}
+					else{
+						state.data('displayid', newname);
+						state.find('.stateName').text(newname);
+					}
 				}
 			}
 		},
@@ -529,7 +535,6 @@ var fsm = (function() {
 						var trans_state;
 						var curr_trans;
 						var transs = []
-						// var switchop = '';
 						while (inpCCode.indexOf('case') !== -1) {
 							inpCCode = inpCCode.slice(inpCCode.indexOf('case'));
 							inpCCode = inpCCode.slice(inpCCode.indexOf('\'')+1);
@@ -559,14 +564,8 @@ var fsm = (function() {
 								casePos = casePos.slice(casePos.indexOf('else if')+7);
 							}
 							inpCCode = inpCCode.slice(inpCCode.indexOf('break'));
-							// console.log(inpCCode);
-							// console.log(states, curr_state, trans_state, curr_trans);
-							// console.log(transitions);
-							// собери во едино то что получилось и залей в модель
 						}
 					}
-					// serializedModel = serializeCCode(saveLoadDialog.find('#code textarea').val());
-					// console.log(transs);
 					model.dfa.transitions = transitions;
 					model.states = states;
 					model.transitions = transs;
@@ -579,7 +578,7 @@ var fsm = (function() {
 			};
 
 			saveLoadDialog.dialog('option', {
-				title: 'Load Automaton',
+				title: 'Конвертация из кода',
 				buttons: {
 					Cancel: function(){saveLoadDialog.dialog('close');},
 					Load: function(){if (finishLoading()) {saveLoadDialog.dialog('close');}}
@@ -686,7 +685,7 @@ var fsm = (function() {
 				}
 			};
 
-			saveLoadDialog.dialog('option', 'title', 'Save Automaton');
+			saveLoadDialog.dialog('option', 'title', 'Конвертация в код');
 			$('#saveLoadTabs').on('tabsactivate', buttonUpdater);
 			buttonUpdater(null, {newPanel: $('#saveLoadTabs div').eq($('#saveLoadTabs').tabs('option', 'active'))});
 

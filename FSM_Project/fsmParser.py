@@ -10,21 +10,27 @@ else:
 
 def serializedATN():
     return [
-        4,1,4,48,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,3,1,21,8,1,1,2,1,2,1,2,1,2,1,2,1,2,3,2,29,
-        8,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,38,8,3,1,4,1,4,1,4,1,4,1,4,1,
-        4,3,4,46,8,4,1,4,0,0,5,0,2,4,6,8,0,0,52,0,10,1,0,0,0,2,20,1,0,0,
-        0,4,28,1,0,0,0,6,37,1,0,0,0,8,45,1,0,0,0,10,11,3,2,1,0,11,1,1,0,
-        0,0,12,13,5,1,0,0,13,21,3,2,1,0,14,15,5,1,0,0,15,21,3,4,2,0,16,17,
-        5,2,0,0,17,21,3,4,2,0,18,19,5,3,0,0,19,21,3,4,2,0,20,12,1,0,0,0,
-        20,14,1,0,0,0,20,16,1,0,0,0,20,18,1,0,0,0,21,3,1,0,0,0,22,23,5,1,
-        0,0,23,29,3,4,2,0,24,25,5,1,0,0,25,29,3,6,3,0,26,27,5,4,0,0,27,29,
-        3,6,3,0,28,22,1,0,0,0,28,24,1,0,0,0,28,26,1,0,0,0,29,5,1,0,0,0,30,
-        31,5,1,0,0,31,38,3,6,3,0,32,33,5,1,0,0,33,38,3,8,4,0,34,38,5,0,0,
-        1,35,36,5,2,0,0,36,38,3,8,4,0,37,30,1,0,0,0,37,32,1,0,0,0,37,34,
-        1,0,0,0,37,35,1,0,0,0,38,7,1,0,0,0,39,40,5,1,0,0,40,46,3,8,4,0,41,
-        42,5,1,0,0,42,46,3,6,3,0,43,44,5,4,0,0,44,46,3,6,3,0,45,39,1,0,0,
-        0,45,41,1,0,0,0,45,43,1,0,0,0,46,9,1,0,0,0,4,20,28,37,45
+        4,1,4,66,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,27,8,1,1,2,1,
+        2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,3,2,39,8,2,1,3,1,3,1,3,1,3,1,3,
+        1,3,1,3,1,3,1,3,1,3,1,3,3,3,52,8,3,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,
+        4,1,4,1,4,3,4,64,8,4,1,4,0,0,5,0,2,4,6,8,0,0,70,0,10,1,0,0,0,2,26,
+        1,0,0,0,4,38,1,0,0,0,6,51,1,0,0,0,8,63,1,0,0,0,10,11,3,2,1,0,11,
+        1,1,0,0,0,12,13,5,1,0,0,13,27,3,2,1,0,14,15,5,1,0,0,15,16,3,4,2,
+        0,16,17,6,1,-1,0,17,27,1,0,0,0,18,19,5,2,0,0,19,20,3,4,2,0,20,21,
+        6,1,-1,0,21,27,1,0,0,0,22,23,5,3,0,0,23,24,3,4,2,0,24,25,6,1,-1,
+        0,25,27,1,0,0,0,26,12,1,0,0,0,26,14,1,0,0,0,26,18,1,0,0,0,26,22,
+        1,0,0,0,27,3,1,0,0,0,28,29,5,1,0,0,29,39,3,4,2,0,30,31,5,1,0,0,31,
+        32,3,6,3,0,32,33,6,2,-1,0,33,39,1,0,0,0,34,35,5,4,0,0,35,36,3,6,
+        3,0,36,37,6,2,-1,0,37,39,1,0,0,0,38,28,1,0,0,0,38,30,1,0,0,0,38,
+        34,1,0,0,0,39,5,1,0,0,0,40,41,5,1,0,0,41,52,3,6,3,0,42,43,5,1,0,
+        0,43,44,3,8,4,0,44,45,6,3,-1,0,45,52,1,0,0,0,46,52,5,0,0,1,47,48,
+        5,2,0,0,48,49,3,8,4,0,49,50,6,3,-1,0,50,52,1,0,0,0,51,40,1,0,0,0,
+        51,42,1,0,0,0,51,46,1,0,0,0,51,47,1,0,0,0,52,7,1,0,0,0,53,54,5,1,
+        0,0,54,64,3,8,4,0,55,56,5,1,0,0,56,57,3,6,3,0,57,58,6,4,-1,0,58,
+        64,1,0,0,0,59,60,5,4,0,0,60,61,3,6,3,0,61,62,6,4,-1,0,62,64,1,0,
+        0,0,63,53,1,0,0,0,63,55,1,0,0,0,63,59,1,0,0,0,64,9,1,0,0,0,4,26,
+        38,51,63
     ]
 
 class fsmParser ( Parser ):
@@ -61,6 +67,9 @@ class fsmParser ( Parser ):
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
+
+
+    paths = []
 
 
 
@@ -140,7 +149,7 @@ class fsmParser ( Parser ):
         localctx = fsmParser.StartContext(self, self._ctx, self.state)
         self.enterRule(localctx, 2, self.RULE_start)
         try:
-            self.state = 20
+            self.state = 26
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,0,self._ctx)
             if la_ == 1:
@@ -157,22 +166,25 @@ class fsmParser ( Parser ):
                 self.match(fsmParser.T__0)
                 self.state = 15
                 self.s0()
+                self.paths.append('-A>s0')
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 16
+                self.state = 18
                 self.match(fsmParser.T__1)
-                self.state = 17
+                self.state = 19
                 self.s0()
+                self.paths.append('-A>s0')
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 18
+                self.state = 22
                 self.match(fsmParser.T__2)
-                self.state = 19
+                self.state = 23
                 self.s0()
+                self.paths.append('-x>s0')
                 pass
 
 
@@ -219,31 +231,33 @@ class fsmParser ( Parser ):
         localctx = fsmParser.S0Context(self, self._ctx, self.state)
         self.enterRule(localctx, 4, self.RULE_s0)
         try:
-            self.state = 28
+            self.state = 38
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 22
+                self.state = 28
                 self.match(fsmParser.T__0)
-                self.state = 23
+                self.state = 29
                 self.s0()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 24
+                self.state = 30
                 self.match(fsmParser.T__0)
-                self.state = 25
+                self.state = 31
                 self.s1()
+                self.paths.append('-B>s1')
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 26
+                self.state = 34
                 self.match(fsmParser.T__3)
-                self.state = 27
+                self.state = 35
                 self.s1()
+                self.paths.append('-B>s1')
                 pass
 
 
@@ -293,37 +307,39 @@ class fsmParser ( Parser ):
         localctx = fsmParser.S1Context(self, self._ctx, self.state)
         self.enterRule(localctx, 6, self.RULE_s1)
         try:
-            self.state = 37
+            self.state = 51
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,2,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 30
+                self.state = 40
                 self.match(fsmParser.T__0)
-                self.state = 31
+                self.state = 41
                 self.s1()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 32
+                self.state = 42
                 self.match(fsmParser.T__0)
-                self.state = 33
+                self.state = 43
                 self.s2()
+                self.paths.append('-A>s2')
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 34
+                self.state = 46
                 self.match(fsmParser.EOF)
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 35
+                self.state = 47
                 self.match(fsmParser.T__1)
-                self.state = 36
+                self.state = 48
                 self.s2()
+                self.paths.append('-A>s2')
                 pass
 
 
@@ -370,31 +386,33 @@ class fsmParser ( Parser ):
         localctx = fsmParser.S2Context(self, self._ctx, self.state)
         self.enterRule(localctx, 8, self.RULE_s2)
         try:
-            self.state = 45
+            self.state = 63
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,3,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 39
+                self.state = 53
                 self.match(fsmParser.T__0)
-                self.state = 40
+                self.state = 54
                 self.s2()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 41
+                self.state = 55
                 self.match(fsmParser.T__0)
-                self.state = 42
+                self.state = 56
                 self.s1()
+                self.paths.append('-B>s1')
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 43
+                self.state = 59
                 self.match(fsmParser.T__3)
-                self.state = 44
+                self.state = 60
                 self.s1()
+                self.paths.append('-B>s1')
                 pass
 
 

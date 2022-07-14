@@ -42,7 +42,6 @@ def antlr(request):
     # sys.path.append('.\static\\antlr')
     from fsmLexer import fsmLexer
     from fsmParser import fsmParser
-    # from fsmListener import fsmListener
     input = InputStream(input)
     lexer = fsmLexer(input)
     lexer.addErrorListener( MyErrorListener() )
@@ -51,11 +50,11 @@ def antlr(request):
     parser.addErrorListener( MyErrorListener() )
 
         # Java
-    os.system('antlr4 .\\fsm.g4') #antlr-3.3-complete.jar
-    os.system('javac .\\*.java')
-    os.system(f'java org.antlr.v4.gui.TestRig fsm expr -gui .\\test.txt')
-    with open('.\\antlr4_parse_tree.svg', "r") as f:
-        svg = f.read()
+    # os.system('antlr4 .\\fsm.g4') #antlr-3.3-complete.jar
+    # os.system('javac .\\*.java')
+    # os.system(f'java org.antlr.v4.gui.TestRig fsm expr -gui .\\test.txt')
+    # with open('.\\antlr4_parse_tree.svg', "r") as f:
+    #     svg = f.read()
     # tree = parser.expr()
     # tree.toStringTree(parser)
     # print(Trees.inspect(tree, parser))
@@ -73,16 +72,16 @@ def antlr(request):
     try: # java org.antlr.v4.gui.TestRig fsm expr -tree .\test.txt > ast.dot
         parser.buildParseTrees = True
         tree = parser.expr()
-        # parser.paths.reverse()
-        # print(parser.paths)
+        parser.paths.reverse()
+        print(parser.paths)
     except:
         print('Rejected')
         # print(parser.paths)
-        return HttpResponse([f'Rejected|{svg}'])
+        return HttpResponse([f'Rejected|{parser.paths}'])
     
 
 
-    return HttpResponse(f'Accepted|{svg}')
+    return HttpResponse(f'Accepted|{parser.paths}')
 
 def index(request):
     return render(request, 'main/index.html')

@@ -1,1 +1,0 @@
-(expr (start A (s0 x # (s0 # (s0 # (s0 B (s1 <EOF>)))))))

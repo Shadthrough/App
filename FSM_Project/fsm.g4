@@ -1,20 +1,20 @@
 grammar fsm;
+@parser::members {
+paths = []
+}
 expr: start;
 start : '#' start
-| '#' s0 
-| 'A' s0 
-| 'x' s0 
+| '#' start {self.paths.append('-R>start')}
+| EOF
+| 'R' start {self.paths.append('-R>start')}
+| '#' s0 {self.paths.append('-S>s0')}
+| EOF
+| 'S' s0 {self.paths.append('-S>s0')}
 ;
 s0 : '#' s0
-| '#' s1 
-| 'B' s1 
-;
-s1 : '#' s1
-| '#' s2 
-| EOF
-| 'A' s2 
-;
-s2 : '#' s2
-| '#' s1 
-| 'B' s1 
+| '#' s0 {self.paths.append('-R>s0')}
+| 'R' s0 {self.paths.append('-R>s0')}
+| '#' start {self.paths.append('-A>start')}
+| 'A' start {self.paths.append('-A>start')}
+| 'S' s0 {self.paths.append('-S>s0')}
 ;
